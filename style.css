@@ -687,7 +687,7 @@ width: 30%;
 /* height: 0vh; */
 width: 100%;    
 display: flex;
-/* align-items: center; */
+align-items: center;
 justify-content: space-between;
 /* background-color: aquamarine; */
 }
@@ -939,4 +939,13 @@ justify-content: center;padding-left: 1vw;
 }
 .window>.main-s{
     gap: 10px;
+}
+.akku-products{
+    height: 200vh;
+    width: 100vw;
+    background-color: gray;
+ display: grid;
+ padding: 5vw;
+grid-template-rows: repeat(2,1fr);
+grid-template-columns: repeat(3,1fr);
 }

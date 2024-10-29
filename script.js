@@ -65,7 +65,7 @@ else{
     flag=0
 }
 })
-
+let total=0
 
 let flad=0
 let dis=0
@@ -157,7 +157,7 @@ let product=[
 function loadProduct(){
   
     product.forEach((e)=>{
-clutter+=`<div id="${e.id}" class="main-product-card">
+clutter+=`<div data-id="${e.id}" class="main-product-card">
 <div class="images-shop"><img src="${e.img}" alt=""></div>
 <div class="product-dets">
     <div class="item-name-shop">
@@ -185,17 +185,71 @@ clutter+=`<div id="${e.id}" class="main-product-card">
     
 }
 loadProduct()
-document.querySelector(".akku-products").addEventListener("click",(e)=>{
-  let  ak;
+
+
+let  ak;
+
+
+document.querySelector(".akku-products").addEventListener("click",function(e){
 if(e.target.tagName==='BUTTON'){
-     ak=product[e.target.parentElement.dataset.id]
-     console.log(ak);
+     ak=product[e.target.parentElement.parentElement.dataset.id]
+    //  console.log(ak);
+    //  console.log(ak.brandName)
+     loadcart()
+   
 }
 
 })
+function loadcart(){
 
-function getdata(){
-let adtocart=document.querySelectorAll(".BTN")
+
+let html=""
+
+    
+let ct=document.querySelector(".cart-items")
+ html=`<div  class="items">
+    <div  class="item-image">
+        <img src="${ak.img}" alt="">
+    </div>
+    <div class="item-name">
+        <h3>${ak.brandName}</h3>
+        <p>${ak.cateoNmae}</p>
+    </div>
+    <div class="item-quantity">
+        <button class="Subtract">-</button>
+        <p>1</p>
+        <button class="add">+</button>
+
+
+
+    </div>
+    <div class="item-prize">${ak.prize}</div>
+    <div class="item-remove-btn">x</div>
+</div>`
+
+let itemsPrize=0
+ itemsPrize+=(ak.prize)
+console.log(itemsPrize);
+
+ct.innerHTML+=html
+
+
+// items count
+let cart=document.querySelector(".cart-nav")
+cart.innerHTML=`  <h2>Shopping Cart</h2> <p id="items-count">${ct.childElementCount} &nbsp items</p>`
+
+let cart1=document.querySelector(".summary-dets-part1")
+cart1.innerHTML=` <h3>ITEMS  ${ct.childElementCount} </h3>
+     <h3> 132.00 </h3>`
+
+// total
+
+ total =total + ak.prize
+console.log(total);
+
+      
+      
+
+
 
 }
-getdata()
